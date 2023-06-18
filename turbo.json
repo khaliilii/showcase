@@ -18,7 +18,8 @@
       "dependsOn": ["^build"]
     },
     "coverage": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": false
     },
     "coveralls": {
       "dependsOn": ["^coverage"],

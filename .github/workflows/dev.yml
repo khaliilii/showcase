@@ -57,7 +57,7 @@ jobs:
           run_install: |
             - recursive: true
               args: [--frozen-lockfile, --strict-peer-dependencies]
-            - args: [--global, prettier, typescript]
+            - args: [--global, prettier, typescript, turbo]
 
       - name: Get pnpm store directory
         id: pnpm-cache

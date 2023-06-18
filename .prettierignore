@@ -1,0 +1,13 @@
+.turbo
+.next
+
+dist
+build
+node_modules
+
+**/*.map
+**/*.gz
+**/*.gz.map
+**/*.gz.min.js
+**/*.gz.min.css
+**/*.gz.min.js.map

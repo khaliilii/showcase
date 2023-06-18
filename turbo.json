@@ -1,0 +1,82 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": ["PORT"],
+  "pipeline": {
+    "build": {
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**",
+        "build/**",
+        "public/build/**"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^build"]
+    },
+    "coverage": {
+      "dependsOn": ["^build"]
+    },
+    "coveralls": {
+      "dependsOn": ["^coverage"],
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["lint:prettier"]
+    },
+    "lint:prettier": {
+      "inputs": [
+        "**/*.code-snippets",
+        "**/*.component.html",
+        "**/*.css",
+        "**/*.gql",
+        "**/*.graphql",
+        "**/*.har",
+        "**/*.hbs",
+        "**/*.htm",
+        "**/*.html",
+        "**/*.js",
+        "**/*.json",
+        "**/*.json5",
+        "**/*.jsonc",
+        "**/*.jss",
+        "**/*.jsx",
+        "**/*.less",
+        "**/*.markdown",
+        "**/*.md",
+        "**/*.mdx",
+        "**/*.scss",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.xhtml",
+        "**/*.yaml",
+        "**/*.yml",
+        "**/*.eslintrc",
+        "**/*.eslintrc.json",
+        "**/*.prettierrc",
+        "**/*README",
+        "**/*tsconfig.json",
+        "**/*tslint.json"
+      ]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "loc": {
+      "cache": false
+    }
+  }
+}

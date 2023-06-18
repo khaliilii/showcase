@@ -1,0 +1,33 @@
+{
+  "name": "showcase",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Neekware Inc.",
+    "url": "https://neekware.com"
+  },
+  "scripts": {
+    "build": "turbo build",
+    "clean": "turbo clean",
+    "dev": "turbo dev --no-cache  --continue",
+    "format": "prettier --write \"**/*.{ts,tsx,md,mdx,json}\"",
+    "loc": "turbo loc",
+    "coverage": "turbo coverage",
+    "coverall": "turbo coverall",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "start": "turbo start",
+    "postinstall": "husky install"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "^20.3.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@7.15.0"
+}

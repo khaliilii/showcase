@@ -81,10 +81,10 @@ jobs:
 
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/coverage
 
       - name: Push coverage to coveralls 📝
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ github.workspace }}/coverage/lcov.combo.info'
+          path-to-lcov: ./coverage/lcov.combo.info

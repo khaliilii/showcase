@@ -37,6 +37,11 @@ async function combineLcovFiles(
       }
     }
   );
+  console.log(
+    `>>> Combined ${
+      lcovFiles.length
+    } lcov files into ${coverageComboFilePath.replace(coverageDir, '')}`
+  );
 }
 
 /**

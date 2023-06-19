@@ -51,7 +51,7 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install pnpm
+      - name: Install pnpm 👩🏽‍💻
         run: |
           npm install -g pnpm
           npm install -g turbo
@@ -79,9 +79,9 @@ jobs:
       - name: Combine coverage 🔀
         run: |
           turbo coveralls
-          pwd
+          find . -name lcov.combo.info
 
-      - name: Push coverage to coveralls
+      - name: Push coverage to coveralls 📝
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

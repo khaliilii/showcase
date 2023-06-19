@@ -1,26 +1,18 @@
 import * as fs from 'fs';
 
-import { execute, readme } from './util';
+import { execute, projDir, readme } from './util';
 
 const { program } = require('commander');
 const replaceSection = require('markdown-replace-section');
 
 const DEBUG = false;
-const excludeDirs = [
-  'node_modules',
-  'tmp',
-  'coverage',
-  'dist',
-  'server',
-  'public',
-];
 const sectionName = 'Lines of Code (auto-generated stats)';
 const sectionHelp = `
 ### Line of code generation
 
 The above line of code table is auto generated and should not be edited manually.
 Note: \`loc\` should be installed on your system, in order to generate the above stats.
-
+      It will ignore all directories, files that you have in .gitignore.
 - \`brew install loc\` # install on mac
 `;
 /**
@@ -28,7 +20,9 @@ Note: \`loc\` should be installed on your system, in order to generate the above
  * https://github.com/renke/markdown-replace-section/issues/1
  */
 async function main() {
-  const loc = await execute(`loc . --exclude ${excludeDirs.join(' ')}`, !DEBUG);
+  const cmd = `loc ${projDir}`;
+  console.log(`Running: ${cmd}`);
+  const loc = await execute(cmd, !DEBUG);
   let readMeContent: string;
 
   try {

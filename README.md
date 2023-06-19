@@ -20,7 +20,7 @@ A project tailored to showcase political individuals
 
 ## License
 
-- Released under a ([MIT](https://raw.githubusercontent.com/neekware/showcase/main/LICENSE)) license.
+- Released under a ([MIT](https://raw.githubusercontent.com/neekware/showcase/main/LICENSE.md)) license.
 
 ## Version
 

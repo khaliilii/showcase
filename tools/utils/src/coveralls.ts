@@ -1,14 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {
-  coverageDir,
-  getGlobFiles,
-  projDir,
-  removeDirectory,
-  sleep,
-  writeFileSyncRecursive,
-} from './util';
+import { coverageDir, getGlobFiles, writeFileSyncRecursive } from './util';
 
 const { program } = require('commander');
 
@@ -35,9 +28,6 @@ async function combineLcovFiles(
     ''
   );
 
-  removeDirectory(coverageDir);
-  await sleep(1000);
-
   writeFileSyncRecursive(
     path.resolve(coverageComboFilePath),
     mergedReport,
@@ -53,7 +43,7 @@ async function combineLcovFiles(
  * Execute coverage merge command
  */
 async function main() {
-  const coverageGlobPattern = `${projDir}/**/lcov.info`;
+  const coverageGlobPattern = `${coverageDir}/**/lcov.info`;
   const coverageComboFilePath = `${coverageDir}/lcov.combo.info`;
   if (program.verbose) {
     console.log(coverageGlobPattern, coverageComboFilePath, coverageDir);

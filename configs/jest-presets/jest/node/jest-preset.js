@@ -17,5 +17,6 @@ module.exports = {
   ],
   preset: 'ts-jest',
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  coverageReporters: ['html', 'json', 'lcov'],
+  coverageReporters: ['html', 'json', ['lcov', { projectRoot: '../../../..' }]],
+  coverageThreshold: null,
 };

@@ -1,5 +1,10 @@
 # Showcase
 
+[![status-image]][status-link]
+[![coverage-image]][coverage-link]
+
+## Description
+
 A project tailored to showcase political individuals
 
 ## Project tree
@@ -13,6 +18,18 @@ A project tailored to showcase political individuals
 │   └── utils # utils
 ```
 
+## License
+
+- Released under a ([MIT](https://raw.githubusercontent.com/neekware/showcase/main/LICENSE)) license.
+
+## Version
+
+X.Y.Z Version
+
+    `MAJOR` version -- making incompatible API changes
+    `MINOR` version -- adding functionality in a backwards-compatible manner
+    `PATCH` version -- making backwards-compatible bug fixes
+
 ## Lines of Code (auto-generated stats)
 
 ```txt<br>--------------------------------------------------------------------------------
@@ -25,9 +42,13 @@ A project tailored to showcase political individuals
 --------------------------------------------------------------------------------
 ```
 
-### Line of code generation
+## Sponsors
 
-The above line of code table is auto generated and should not be edited manually.
-Note: `loc` should be installed on your system, in order to generate the above stats.
+[ [Neekware Inc.](http://neekware.com) ]
 
-- `brew install loc` # install on mac
+[status-image]: https://github.com/neekware/showcase/actions/workflows/ci.yml/badge.svg
+[status-link]: https://github.com/neekware/showcase/actions/workflows/ci.yml
+[version-image]: https://img.shields.io/npm/v/@showcase.svg
+[version-link]: https://www.npmjs.com/settings/showcase/packages
+[coverage-image]: https://coveralls.io/repos/neekware/showcase/badge.svg
+[coverage-link]: https://coveralls.io/r/neekware/showcase

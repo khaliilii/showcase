@@ -77,7 +77,9 @@ jobs:
         run: turbo test
 
       - name: Combine coverage
-        run: turbo coveralls
+        run: |
+          turbo coveralls
+          cat ./coverage/lcov.combo.info
 
       - name: Push coverage to coveralls
         uses: coverallsapp/github-action@master

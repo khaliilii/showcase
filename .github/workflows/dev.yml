@@ -67,19 +67,19 @@ jobs:
       - name: Install Dependencies 🔧
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
 
-      - name: Run linter
+      - name: Run linter 🧹
         run: turbo lint
 
-      - name: Run builder
+      - name: Run builder 👷🏽‍♂️
         run: turbo build
 
-      - name: Run tester
+      - name: Run tester 🧪
         run: turbo test
 
-      - name: Combine coverage
+      - name: Combine coverage 🔀
         run: |
           turbo coveralls
-          cat ./coverage/lcov.combo.info
+          pwd
 
       - name: Push coverage to coveralls
         uses: coverallsapp/github-action@master

@@ -77,12 +77,14 @@ jobs:
         run: turbo test
 
       - name: Combine coverage 🔀
+        run: turbo coveralls
+
+      - name: List files in the repository
         run: |
-          turbo coveralls
-          find . -name lcov.combo.info
+          ls ${{ github.workspace }}
 
       - name: Push coverage to coveralls 📝
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: './coverage/lcov.combo.info'
+          path-to-lcov: ${{ github.workspace }}/coverage/lcov.combo.info'

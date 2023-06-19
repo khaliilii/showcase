@@ -97,15 +97,16 @@ turbo start
 To install new packages, you can use the following commands:
 
 ```bash
-# Install a dependency at the root/top-level in the main package.json
-pnpm -w add <package-name>
+# Install an external dependency at the root/top-level in the main package.json
+pnpm -w add <external-lib-name>
 
-# Install a development dependency at the root/top-level in the main package.json
-pnpm -w add <package-name> -D
+# Install a external development dependency at the root/top-level in the main package.json
+pnpm -w add <external-lib-name> -D
 
 # Install a dependency in a sub-package (lib/app) ONLY
-# Example: pnpm --filter=ui add uuid (where "ui" is the package name and "uuid" is the dependency)
-pnpm --filter=<package-name> add <dependency-name>
+# Example: pnpm --filter=ui add uuid
+# (where "ui" is the internal package name and "uuid" is the external dependency)
+pnpm --filter=<internal-package-name> add <external-lib-name>
 ```
 
 ### Contribution

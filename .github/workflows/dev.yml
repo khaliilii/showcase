@@ -73,18 +73,14 @@ jobs:
       - name: Run builder 👷🏽‍♂️
         run: turbo build
 
-      - name: Run tester 🧪
-        run: turbo test
+      - name: Run tester with coverage 🧪
+        run: turbo coverage
 
-      - name: Combine coverage 🔀
+      - name: Run coverage combiner 🔀
         run: turbo coveralls
-
-      - name: List files in the repository
-        run: |
-          find . -name lcov.combo.info ${{ github.workspace }}
 
       - name: Push coverage to coveralls 📝
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ github.workspace }}/coverage/lcov.combo.info
+          path-to-lcov: ./coverage/lcov.combo.info

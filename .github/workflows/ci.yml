@@ -1,12 +1,11 @@
-name: DEV Verification
+name: CI Verification
 
-# Run on push only on dev & sandbox branches.
+# Run on push only on ci branch.
 # Otherwise it may trigger concurrently `push & pull_request` on PRs.
 on:
   push:
     branches:
-      - dev
-      - sandbox
+      - ci
     paths-ignore:
       - '*.md'
       - '.vscode/**'

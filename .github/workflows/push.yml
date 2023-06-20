@@ -1,7 +1,7 @@
 name: Push Checks
 
 on:
-  pull_request:
+  push:
     # only trigger on push to these branches.
     branches:
       - dev
@@ -30,7 +30,7 @@ on:
         description: 'Push scenario tags'
 
 jobs:
-  build:
+  cicd:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,35 +39,44 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Install pnpm and turbo 🚀
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.6.3
+      - name: Checkout Code 🚪
+        uses: actions/checkout@v3
 
-      - name: Setup node
+      - name: Setup Node ⚙️
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: 'pnpm'
+          node-version: '16'
 
-      - name: Install required packages 🔧
+      - name: Install pnpm 👩🏽‍💻
         run: |
-          pnpm install --frozen-lockfile --forzen-lockfile
-          pnpm install -g trubo
-          pnpx playwrite install chromium
+          npm install -g pnpm
+          npm install -g turbo
 
-      - name: Run Linter 🧹
+      - name: Cache .pnpm-store
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - name: Install Dependencies 🔧
+        run: pnpm install --frozen-lockfile --strict-peer-dependencies
+
+      - name: Run linter 🧹
         run: turbo lint
 
-      - name: Run Builder 🏗
+      - name: Run builder 👷🏽‍♂️
         run: turbo build
 
-      - name: Run Tests 🧪
+      - name: Run tester with coverage 🧪
         run: turbo coverage
 
-      - name: Run Coveralls 📈
-        uses: coverallsapp/github-action@v1.1.2
+      - name: Run coverage combiner 🔀
+        run: turbo coveralls
+
+      - name: Push coverage to coveralls 📝
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/lcov.combo.info
-          flag-name: coverage

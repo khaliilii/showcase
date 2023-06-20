@@ -1,0 +1,73 @@
+name: Push Checks
+
+on:
+  pull_request:
+    # only trigger on push to these branches.
+    branches:
+      - dev
+      - ci
+      - main
+    # ignore changes to the README, VSCode config, and other non-code files.
+    paths-ignore:
+      - '*.md'
+      - '.vscode/**'
+      - '.husky/**'
+      - '.editorconfig'
+      - '.prettieriignore'
+      - 'cspell.json'
+      - 'env.example'
+      - 'LICENSE'
+      - 'tools/**'
+      - 'graphs/**'
+  # dispatch for manual runs.
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Push scenario tags'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Install pnpm and turbo 🚀
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - name: Install required packages 🔧
+        run: |
+          pnpm install --frozen-lockfile --forzen-lockfile
+          pnpm install -g trubo
+          pnpx playwrite install chromium
+
+      - name: Run Linter 🧹
+        run: turbo lint
+
+      - name: Run Builder 🏗
+        run: turbo build
+
+      - name: Run Tests 🧪
+        run: turbo coverage
+
+      - name: Run Coveralls 📈
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.combo.info
+          flag-name: coverage

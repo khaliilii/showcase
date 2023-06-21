@@ -6,6 +6,7 @@ const { program } = require('commander');
 const replaceSection = require('markdown-replace-section');
 
 const DEBUG = false;
+const EXCLUDE_LIST = ['pnpm-lock.yaml'];
 const sectionName = 'Lines of Code (auto-generated stats)';
 const sectionHelp = `
 ### Line of code generation
@@ -20,7 +21,8 @@ Note: \`loc\` should be installed on your system, in order to generate the above
  * https://github.com/renke/markdown-replace-section/issues/1
  */
 async function main() {
-  const cmd = `loc ${projDir}`;
+  const excludes = EXCLUDE_LIST.map((e) => `--exclude ${e}`).join(' ');
+  const cmd = `loc ${projDir} ${excludes}`;
   console.log(`Running: ${cmd}`);
   const loc = await execute(cmd, !DEBUG);
   let readMeContent: string;

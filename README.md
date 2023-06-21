@@ -166,8 +166,8 @@ X.Y.Z Semantic Versioning
 
 [ [Neekware Inc.](http://neekware.com) ]
 
-[status-image]: https://github.com/neekware/showcase/actions/workflows/ci.yml/badge.svg
-[status-link]: https://github.com/neekware/showcase/actions/workflows/ci.yml
+[status-image]: https://github.com/neekware/showcase/actions/workflows/main.yml/badge.svg
+[status-link]: https://github.com/neekware/showcase/actions/workflows/main.yml
 [version-image]: https://img.shields.io/npm/v/@showcase.svg
 [version-link]: https://www.npmjs.com/settings/showcase/packages
 [coverage-image]: https://coveralls.io/repos/neekware/showcase/badge.svg

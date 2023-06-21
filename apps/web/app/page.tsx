@@ -7,7 +7,7 @@ export const metadata = {
   title: 'Showcase | Present the best of yourself!',
 };
 
-export default function Store() {
+export default function Main() {
   log('Hey! This is Home.');
   return (
     <div className="container">

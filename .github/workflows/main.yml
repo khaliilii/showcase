@@ -1,11 +1,10 @@
-name: Push Checks
+name: Deploy Checks
 
 on:
   push:
-    # only trigger on push to these branches.
+    # only trigger on push to to deploy on the main branch.
     branches:
-      - dev
-      - ci
+      - main
     # ignore changes to the README, VSCode config, and other non-code files.
     paths-ignore:
       - '*.md'
@@ -26,7 +25,7 @@ on:
         required: true
         default: 'warning'
       tags:
-        description: 'Push scenario tags'
+        description: 'Deploy scenario tags'
 
 jobs:
   cicd:
@@ -78,3 +77,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/lcov.combo.info
+
+      - name: Another step
+        run: echo "Prepearing to deploy ... "
